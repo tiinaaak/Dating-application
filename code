@@ -1,0 +1,47 @@
+
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+// User class
+class User {
+public:
+string name;
+int age;
+string gender;
+string interest;
+string bio;
+User(string name, int age, string gender, string interest, string bio) {
+this->name = name;
+this->age = age;
+this->gender = gender;
+this->interest = interest;
+this->bio = bio;
+}
+};
+// Match function that returns true if two users are compatible
+bool match(User user1, User user2) {
+if (user1.gender == user2.interest && user1.interest == user2.gender && user1.age >= 18
+&& user2.age >= 18) {
+return true;
+}
+return false;
+}
+int main() {
+// Sample users
+User user1("Alice", 25, "female", "male", "I love hiking and trying new foods.");
+User user2("Bob", 30, "male", "female", "I'm a huge fan of sci-fi movies and video
+games.");
+User user3("Charlie", 22, "male", "male", "I'm into fitness and love traveling.");
+// Vector of users
+vector<User> users = {user1, user2, user3};
+// Match users
+for (int i = 0; i < users.size(); i++) {
+for (int j = i+1; j < users.size(); j++) {
+if (match(users[i], users[j])) {
+cout << users[i].name << " and " << users[j].name << " are a compatible match!\n";
+}
+}
+}
+return 0;
+}
